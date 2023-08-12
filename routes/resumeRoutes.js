@@ -29,6 +29,8 @@ router.get("/", isAuthenticated, resumehomepage);
 //POST /add-edu Add education for the current Login user
 router.post("/add-edu", isAuthenticated, addEducation);
 
+
+
 //POST /edit-edu/:ediid Edit Education for the Current Login user
 
 router.post("/edit-edu/:eduid", isAuthenticated, editEducation);

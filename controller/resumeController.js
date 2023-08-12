@@ -18,6 +18,12 @@ exports.addEducation = CatchAsyncError(async (req, res, next) => {
     message: "Education Added !!",
   });
 });
+
+// exports.getSingleEducation=CatchAsyncError(async (req,res,next)=>{
+//   const student = await studentModel.findById(req.id).exec();
+
+// });
+
 exports.editEducation = CatchAsyncError(async (req, res, next) => {
   const student = await studentModel.findById(req.id).exec();
    const eduIndex=  student.resume.education.findIndex(i=>i.id==req.params.eduid);
