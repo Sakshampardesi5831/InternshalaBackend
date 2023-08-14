@@ -54,7 +54,7 @@ router.post("/delete-jobs/:delId", isAuthenticated, deleteJobs);
 /*---------------------------InternShips Routes-----------------------------------*/
 
 //POST /add-internship Add InternShip for the Current Login User
-router.post("/add-jobs", isAuthenticated, addInternship);
+router.post("/add-internship", isAuthenticated, addInternship);
 
 //POST /edit-intern/:internId Edit InternShip for the Current Login User
 
