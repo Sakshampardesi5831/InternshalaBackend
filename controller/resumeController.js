@@ -92,7 +92,7 @@ exports.editInternship=CatchAsyncError(async (req,res,next)=>{
 exports.deleteInternship=CatchAsyncError(async (req,res,next)=>{
   const student=await studentModel.findById(req.id).exec();
   const filterIntern=student.resume.internships.filter((i)=>i.id!==req.params.delId);
-  student.resume.jobs=filterIntern;
+  student.resume.internships=filterIntern;
   await student.save();
   res.status(200).json({
     message:"InternShip is Deleted !!!"
