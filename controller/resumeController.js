@@ -158,4 +158,94 @@ exports.deleteCourses=CatchAsyncError(async (req,res,next)=>{
   })
 })
 
-/*------------------------------------------------------------------------------------------------------*/
+/*---------------ACCOMPLISHMENT CURD OPERATION SECTION---------------------------------------------------------------------------------------*/
+exports.addAccomplishment=CatchAsyncError(async (req,res,next)=>{
+  const student=await studentModel.findById(req.id).exec();
+  student.resume.accomplishments.push({...req.body,id:uuidv4()});
+  await student.save();
+  res.status(200).json({
+    message:"New accomplishments Added !!!"
+  })
+});
+
+exports.editAccomplishment=CatchAsyncError(async (req,res,next)=>{
+  const student =await studentModel.findById(req.id).exec();
+  const accomplishmentsIndex=student.resume.accomplishments.findIndex(i=>i.id==req.params.accomplishmentsId);
+  student.resume.accomplishments[accomplishmentsIndex]={...student.resume.accomplishments[accomplishmentsIndex],...req.body};
+  await student.save();
+  res.status(200).json({
+    message:"Accomplishments Updated !!!"
+  })
+});
+
+exports.deleteAccomplishment=CatchAsyncError(async (req,res,next)=>{
+  const student=await studentModel.findById(req.id).exec();
+  const filterAccomplishment=student.resume.accomplishments.filter((i)=>i.id!==req.params.accomplishmentsId);
+  student.resume.accomplishments=filterAccomplishment;
+  await student.save();
+  res.json(200).json({
+    message:"Accomplishments  Deleted !!!!"
+  })
+});
+/**--------------SKILLS CRUD OPERATION SECTION--------------------------------------------------------------------------------------- */
+exports.addSkill=CatchAsyncError(async (req,res,next)=>{
+  const student=await studentModel.findById(req.id).exec();
+  student.resume.skills.push({...req.body,id:uuidv4()});
+  await student.save();
+  res.status(200).json({
+    message:"New Skill Added !!!"
+  })
+});
+
+exports.editSkill=CatchAsyncError(async (req,res,next)=>{
+  const student =await studentModel.findById(req.id).exec();
+  const skillsIndex=student.resume.skills.findIndex(i=>i.id==req.params.skillsId);
+  student.resume.skills[skillsIndex]={...student.resume.skills[skillsIndex],...req.body};
+  await student.save();
+  res.status(200).json({
+    message:"Skills Updated !!!"
+  })
+});
+
+exports.deleteSkill=CatchAsyncError(async (req,res,next)=>{
+  const student=await studentModel.findById(req.id).exec();
+  const filterSkill=student.resume.skills.filter((i)=>i.id!==req.params.skillsId);
+  student.resume.skills=filterSkill;
+  await student.save();
+  res.json(200).json({
+    message:"Skills  Deleted !!!!"
+  })
+});
+
+/**--------------PROJECTS CRUD OPERATION SECTION------------------------------------------------------------------ */
+
+exports.addProject=CatchAsyncError(async (req,res,next)=>{
+  const student=await studentModel.findById(req.id).exec();
+  student.resume.projects.push({...req.body,id:uuidv4()});
+  await student.save();
+  res.status(200).json({
+    message:"New Skill Added !!!"
+  })
+})
+
+exports.editProject=CatchAsyncError(async (req,res,next)=>{
+  const student =await studentModel.findById(req.id).exec();
+  const projectIndex=student.resume.projects.findIndex(i=>i.id==req.params.projectsId);
+  student.resume.projects[projectIndex]={...student.resume.projects[projectIndex],...req.body};
+  await student.save();
+  res.status(200).json({
+    message:"Project Updated !!!"
+  })
+});
+
+exports.deleteProject=CatchAsyncError(async (req,res,next)=>{
+  const student=await studentModel.findById(req.id).exec();
+  const filterProject=student.resume.projects.filter((i)=>i.id!==req.params.projectsId);
+  student.resume.projects=filterProject;
+  await student.save();
+  res.json(200).json({
+    message:"Skills  Deleted !!!!"
+  })
+});
+
+/**--------------ALL RESUME ROUTES FINISH------------------------------------------------------------------------------------------------------- */

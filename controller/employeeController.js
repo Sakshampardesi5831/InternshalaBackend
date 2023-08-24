@@ -4,7 +4,7 @@ const internshipModel=require("../models/internship");
 const jobsModel=require("../models/jobModel");
 const ErrorHandler=require("../utils/ErrorHandler");
 const { sendMail } = require("../utils/NodeMailer");
-const { sendToken } = require("../utils/SendToken");
+const { sendToken,sendEmployeeToken } = require("../utils/SendToken");
 const imagekit=require("../utils/ImageKit").initImageKit();
 const path=require("path");
 exports.homepage = CatchAsyncError(async (req, res, next) => {
@@ -36,7 +36,8 @@ exports.employeeSignin = CatchAsyncError(async (req, res, next) => {
  if(!isMatch){
    return next(new ErrorHandler("wrong credentials",500));
  }
-  sendToken(employee,201,res);
+  // sendToken(employee,201,res);
+  sendEmployeeToken(employee,200,res);
   //res.json(student);
 });
 exports.employeeSignout = CatchAsyncError(async (req, res, next) => {

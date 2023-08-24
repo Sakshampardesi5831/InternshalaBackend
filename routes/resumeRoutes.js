@@ -16,7 +16,10 @@ const {
   deleteResponsibility,
   addCourses,
   editCourses,
-  deleteCourses
+  deleteCourses,
+  addAccomplishment,editAccomplishment,deleteAccomplishment,
+  addSkill,editSkill,deleteSkill,
+  addProject,editProject,deleteProject
 } = require("../controller/resumeController");
 const { currentUser } = require("../controller/indexController");
 const { isAuthenticated } = require("../middleware/auth");
@@ -85,12 +88,46 @@ router.post("/delete-responsibility/:responsibilityId",isAuthenticated,deleteRes
 router.post("/add-courses",isAuthenticated,addCourses);
 
 //POST /edit-courses/:coursesId Edit Course for the Current user
-
 router.post("/edit-courses/:coursesId",isAuthenticated,editCourses);
 
 //POST /delete-courses/:coursesId Delete Courses for the Current User
-
 router.post("/delete-courses/:coursesId",isAuthenticated,deleteCourses);
+
+/**---------------Accomplishment Routes---------------------------------------------------------- */
+
+
+//POST /resume/add-accomplishment
+router.post("/add-accomplishment",isAuthenticated,addAccomplishment);
+
+//POST /resume/edit-accomplishment/:accomplishmentsId
+router.post("/edit-accomplishment/:accomplishmentsId",isAuthenticated,editAccomplishment);
+
+//POST /resume/delete-accomplishment/:accomplishmentsId
+router.post("/edit-accomplishment/:accomplishmentsId",isAuthenticated,deleteAccomplishment);
+/**----------------SKILLS ROUTES--------------------------------------------------------------------------- */
+
+//POST /resume/add-skill
+router.post("/add-skill",isAuthenticated,addSkill);
+
+//POST /resume/edit-skill/:skillsId
+router.post("/edit-skill/:skillsId",isAuthenticated,editSkill);
+
+//POST /resume/delete-skill/:skillId
+router.post("/delete-skill/:skillId",isAuthenticated,deleteSkill);
+
+/**----------------PROJECTS ROUTES----------------------------------------------------------- */
+//POST /resume/add-project
+router.post("/add-project",isAuthenticated,addProject);
+
+//POST /resume/edit-project/:projectsId
+router.post("/edit-project/:projectsId",isAuthenticated,editProject);
+
+//POST /resume/delete-project/:projectsId
+router.post("/delete-project/:projectsId",isAuthenticated,deleteProject);
+/**--------------------------------------------------------------------------------------------- */
+
+
+
 
 
 module.exports = router;
