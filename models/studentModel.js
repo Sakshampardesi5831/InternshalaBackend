@@ -6,7 +6,7 @@ const studentModel=mongoose.Schema({
     firstname:{
       type:String,
       required:[true,"firstname is required"],
-      minLength:[4,"First name shouls we at Least "]
+      minLength:[4,"First name should we at Least "]
     },
     lastname:{
        type:String,     
